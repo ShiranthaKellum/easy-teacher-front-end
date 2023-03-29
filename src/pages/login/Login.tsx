@@ -1,6 +1,7 @@
 import { Button, Checkbox, Col, Form, Input, Row, Typography } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 const { Title } = Typography;
 
@@ -9,7 +10,14 @@ const LogIn = () => {
 
     const onFinish = (user: any) => {
         axios.post("http://localhost:5000/users/login", user)
-            .then(res => alert(res.data.message))
+            .then(res => {
+                alert(res.data.message);
+                const bearerToken = res.data.token;
+                const tokenString = bearerToken.split(" ")[1];
+                // console.log(tokenString);
+                const decodedToken = jwtDecode(tokenString);
+                console.log(decodedToken);
+            })
             .catch(err => alert(err));
     }
 
