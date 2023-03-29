@@ -1,5 +1,6 @@
 import { Form, Input, Button, Typography } from "antd";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
     const [form] = Form.useForm();
@@ -37,7 +38,6 @@ const SignUp = () => {
                 </Form.Item>
                 <Form.Item
                     name='confirm-password'
-                    // label='Confirm Password'
                     rules={[
                         ({ getFieldValue }) => ({
                             validator(_, value) {
@@ -55,6 +55,8 @@ const SignUp = () => {
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">Register</Button>
+                    Or
+                    <Link to="/">Login here</Link>
                 </Form.Item>
             </Form>
         </>
